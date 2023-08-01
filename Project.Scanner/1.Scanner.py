@@ -55,3 +55,4 @@ elif args.task == 'sendhttp':
 # python ./2.Scanner.py  scan -i '192.168.1.80' -n 2
 #2. Отправить HTTP-запрос:
 # python ./2.Scanner.py  sendhttp -t http://info.cern.ch/ -m GET
+#
