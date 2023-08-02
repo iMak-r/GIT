@@ -12,7 +12,11 @@
     hd: заголовки для HTTP-запроса. Необязательный параметр для sendhttp.
 
 4. Примеры.
-4.1. Сканирование IP (ya.ru, 1 адрес): 
-    docker run --rm -e task='scan' -e ip='77.88.55.242' -e num=1 scanner
-4.2. HTTP-запрос:
-    docker run --rm -e task='sendhttp' -e target='http://info.cern.ch/' -e met='GET' scanner
+    Сканирование IP (ya.ru, 1 адрес): 
+    ```
+docker run --rm -e task='scan' -e ip='77.88.55.242' -e num=1 scanner
+    ```
+    HTTP-запрос:
+    ```
+docker run --rm -e task='sendhttp' -e target='http://info.cern.ch/' -e met='GET' scanner
+    ```
