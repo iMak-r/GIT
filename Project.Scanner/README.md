@@ -13,9 +13,12 @@
 
 4. Примеры.
     - Сканирование IP (ya.ru, 1 адрес): 
-```
-docker run --rm -e task='scan' -e ip='77.88.55.242' -e num=1 scanner
+    ```
+    docker run --rm -e task='scan' -e ip='77.88.55.242' -e num=1 scanner
+    ```
 
     - HTTP-запрос:
-```
-docker run --rm -e task='sendhttp' -e target='http://info.cern.ch/' -e met='GET' scanner
+
+    ```
+    docker run --rm -e task='sendhttp' -e target='http://info.cern.ch/' -e met='GET' scanner
+    ```
