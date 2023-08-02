@@ -8,11 +8,15 @@ import json
 def do_ping_sweep(ip, num_of_host):
     ip_parts = ip.split('.') #Разбираем адрес на части
     network_ip = ip_parts[0] + '.' + ip_parts[1] + '.' + ip_parts[2] + '.' #Подсеть
+ 
     if int(ip_parts[3]) + num_of_host <=255:
         scanned_ip = network_ip + str(int(ip_parts[3]) + num_of_host) #Конечный адрес получаем сложением
-        response = os.popen(f'ping -n 2 {scanned_ip}') #Опция -c требует административных привилегий, так что убрал
+
+        response = os.popen(f'ping -c 2 {scanned_ip}') #Опция -c требует административных привилегий, так что убрал
+        
         res = response.readlines()
-        print(f"[#] Result of scanning: {scanned_ip} [#]\n{res[3]}", end='\n') #Выводим итог
+        print(res)
+        print(f"[#] Result of scanning: {scanned_ip} [#]\n{res[2]}", end='\n') #Выводим итог
     else:
         print("IP-адреса в подсети закончились!")
 
@@ -35,20 +39,32 @@ def sent_http_request(target, method, headers=None, payload=None):
     )
 
 # Работаем со скриптом из терминала
-parser = argparse.ArgumentParser(description='Network scanner')
-parser.add_argument('task', choices=['scan', 'sendhttp'], help='Network scan or send HTTP request')
-parser.add_argument('-i', '--ip', type=str, help='IP address')
-parser.add_argument('-n', '--num_of_hosts', type=int, help='Number of hosts')
-parser.add_argument('-t', '--target', type=str, help='URL')
-parser.add_argument('-m', '--method', type=str, help='Method')
-parser.add_argument('-hd', '--headers', type=str, nargs='*', help='Headers')
-args = parser.parse_args()
+#parser = argparse.ArgumentParser(description='Network scanner')
+#parser.add_argument('task', choices=['scan', 'sendhttp'], help='Network scan or send HTTP request')
+#parser.add_argument('-i', '--ip', type=str, help='IP address')
+#parser.add_argument('-n', '--num_of_hosts', type=int, help='Number of hosts')
+#parser.add_argument('-t', '--target', type=str, help='URL')
+#parser.add_argument('-m', '--method', type=str, help='Method')
+#parser.add_argument('-hd', '--headers', type=str, nargs='*', help='Headers')
+#args = parser.parse_args()
 
-if args.task == 'scan':
-  for host_num in range(args.num_of_hosts):
-        do_ping_sweep(args.ip, host_num)
-elif args.task == 'sendhttp':
-       sent_http_request(args.target, args.method, args.headers)
+#if args.task == 'scan':
+#  for host_num in range(args.num_of_hosts):
+#        do_ping_sweep(args.ip, host_num)
+#elif args.task == 'sendhttp':
+#       sent_http_request(args.target, args.method, args.headers)
+
+#Получаем переменные окружения, которые были переданы в контейнер при запуске скрипта
+task=os.environ.get('task')
+
+if task == 'scan':
+  ip=os.environ.get('ip')
+  num=int(os.environ.get('num'))
+  print(ip," ", num)
+  for host_num in range(num):
+        do_ping_sweep(ip, host_num)
+elif task == 'sendhttp':
+       sent_http_request(os.environ.get('target'), os.environ.get('met'), os.environ.get('hd'))
 
 # запускаем в терминале:
 #1. Просканировать сеть:
