@@ -1,0 +1,10 @@
+- name: Skillfactory-1
+  hosts: Romanov
+  become: True
+  tasks:
+  - name: Installing cmatrix
+    apt: pkg=cmatrix state=latest
+  - name: Installing cowsay
+    apt: pkg=cowsay state=latest
+  - name: Installing sl
+    apt: pkg=sl state=latest
