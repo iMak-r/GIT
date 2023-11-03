@@ -1,0 +1,36 @@
+|----------|-----------|---------|--------------|------|---------|---------|-------|--------|
+| Profile  | VM Driver | Runtime |      IP      | Port | Version | Status  | Nodes | Active |
+|----------|-----------|---------|--------------|------|---------|---------|-------|--------|
+| minikube | docker    | docker  | 192.168.49.2 | 8443 | v1.27.4 | Running |     1 | *      |
+|----------|-----------|---------|--------------|------|---------|---------|-------|--------|
+minikube	192.168.49.2
+minikube version: v1.31.2
+commit: fd7ecd9c4599bef9f04c0986c4a0187f98a4396e
+
+System information
+Machine ID
+1dd4c732fa704aafaf7ceb1ad391ff3a
+System UUID
+1dd4c732fa704aafaf7ceb1ad391ff3a
+Boot ID
+3d50c4f6-8589-402e-9251-4f124f797610
+Kernel version
+5.15.90.1-microsoft-standard-WSL2
+OS Image
+Ubuntu 22.04.2 LTS
+Container runtime version
+docker://24.0.4
+kubelet version
+v1.27.4
+kube-proxy version
+v1.27.4
+Operating system
+linux
+Architecture
+amd64
+CPU capacity
+16.00
+Memory capacity
+15.55Gi
+Pods capacity
+110
