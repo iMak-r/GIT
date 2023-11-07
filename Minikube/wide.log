@@ -1,0 +1,16 @@
+NAME                                    READY   STATUS    RESTARTS   AGE    IP            NODE       NOMINATED NODE   READINESS GATES
+pod/mysql-deployment-dd4b65444-hsq67    1/1     Running   0          105s   10.244.0.39   minikube   <none>           <none>
+pod/webapp-deployment-d867f86b8-7xp46   1/1     Running   0          105s   10.244.0.40   minikube   <none>           <none>
+
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE    SELECTOR
+service/kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP        90m    <none>
+service/mysql-service   ClusterIP   10.100.234.160   <none>        3306/TCP       105s   app=mysql
+service/webapp          NodePort    10.101.207.203   <none>        80:30100/TCP   105s   app=webapp
+
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS      IMAGES           SELECTOR
+deployment.apps/mysql-deployment    1/1     1            1           105s   mysql-service   romanov-db       app=mysql
+deployment.apps/webapp-deployment   1/1     1            1           105s   webapp          romanov-server   app=webapp
+
+NAME                                          DESIRED   CURRENT   READY   AGE    CONTAINERS      IMAGES           SELECTOR
+replicaset.apps/mysql-deployment-dd4b65444    1         1         1       105s   mysql-service   romanov-db       app=mysql,pod-template-hash=dd4b65444
+replicaset.apps/webapp-deployment-d867f86b8   1         1         1       105s   webapp          romanov-server   app=webapp,pod-template-hash=d867f86b8
